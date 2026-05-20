@@ -1,137 +1,242 @@
-<!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><title>NRA 2026 All Priorities Dashboard</title>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>NRA 2026 Lead & Prospect Dashboard</title>
 <style>
-  :root { --orange:#EE4423; --dark:#111827; --muted:#6B7280; --border:#E5E7EB; --soft:#FFF7ED; }
-  body { margin:0; font-family: Inter, Arial, sans-serif; background:#F9FAFB; color:var(--dark); }
-  .wrap { max-width:1280px; margin:0 auto; padding:32px; }
-  .hero { background:linear-gradient(135deg,#111827,#2B1712); color:white; padding:28px 32px; border-radius:20px; box-shadow:0 18px 45px rgba(17,24,39,.15); }
-  .hero h1 { margin:0 0 8px; font-size:30px; } .hero p { margin:0; color:#F3F4F6; }
-  .cards { display:grid; grid-template-columns:repeat(5,1fr); gap:16px; margin:24px 0; }
-  .card { background:white; border:1px solid var(--border); border-radius:18px; padding:18px; box-shadow:0 8px 25px rgba(17,24,39,.06); }
-  .label { color:var(--muted); font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; }
-  .value { font-size:30px; font-weight:800; margin-top:8px; }
-  .grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
-  .panel, .priority-section { background:white; border:1px solid var(--border); border-radius:18px; padding:22px; box-shadow:0 8px 25px rgba(17,24,39,.05); margin-bottom:20px; }
-  h2 { margin:0 0 12px; font-size:20px; } h2 span { font-size:14px; color:var(--muted); font-weight:600; }
-  .barrow { display:grid; grid-template-columns:180px 1fr 48px; align-items:center; gap:12px; margin:14px 0; }
-  .barlabel { font-weight:800; } .barlabel span { display:block; color:var(--muted); font-weight:600; font-size:12px; }
-  .bartrack { background:#F3F4F6; height:16px; border-radius:999px; overflow:hidden; } .bar { background:var(--orange); height:100%; border-radius:999px; }
-  .barcount { font-weight:800; text-align:right; }
-  table { width:100%; border-collapse:collapse; font-size:13px; } th { background:#111827; color:white; text-align:left; } th, td { padding:10px; border-bottom:1px solid var(--border); vertical-align:top; }
-  .note { background:var(--soft); border:1px solid #FED7AA; color:#9A3412; padding:14px 18px; border-radius:14px; font-weight:700; margin:20px 0; }
-</style></head><body><div class="wrap">
-  <div class="hero"><h1>NRA 2026 Lead Priority Dashboard</h1><p>All priorities included for management review: P1, P2, P3, and P4 across 80 unique actionable contacts.</p></div>
-  <div class="cards">
-    <div class="card"><div class="label">Unique Contacts</div><div class="value">80</div></div>
-    <div class="card"><div class="label">P1 Immediate</div><div class="value">13</div></div>
-    <div class="card"><div class="label">P2 Qualified</div><div class="value">13</div></div>
-    <div class="card"><div class="label">P3 Light Nurture</div><div class="value">10</div></div>
-    <div class="card"><div class="label">P4 Database</div><div class="value">44</div></div>
+:root {
+  --orange: #EE4423;
+  --dark: #111827;
+  --muted: #6B7280;
+  --bg: #F8FAFC;
+  --card: #FFFFFF;
+  --line: #E5E7EB;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, Segoe UI, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--dark);
+}
+.header {
+  background: linear-gradient(135deg, #111827 0%, #1F2937 68%, #EE4423 100%);
+  color: #fff;
+  padding: 30px 42px;
+}
+.header h1 { margin: 0 0 8px; font-size: 32px; letter-spacing: -0.02em; }
+.header p { margin: 0; font-size: 15px; color: #F3F4F6; max-width: 1050px; }
+.container { padding: 28px 42px 44px; }
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 10px 24px rgba(17,24,39,0.06);
+}
+.kpi-label { color: var(--muted); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+.kpi-value { color: var(--orange); font-size: 34px; font-weight: 800; margin-top: 8px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin-bottom: 18px; }
+.section-title { font-size: 17px; font-weight: 800; margin: 0 0 14px; }
+.note {
+  padding: 14px 16px;
+  border-left: 5px solid var(--orange);
+  background: #FFF7ED;
+  border-radius: 12px;
+  margin-bottom: 22px;
+  font-size: 14px;
+}
+.bar-row { display: grid; grid-template-columns: 170px 1fr 42px; align-items: center; gap: 10px; margin: 11px 0; }
+.bar-label { font-size: 13px; color: #374151; }
+.bar-track { height: 12px; background: #F3F4F6; border-radius: 999px; overflow: hidden; }
+.bar-fill { height: 100%; background: var(--orange); border-radius: 999px; }
+.bar-value { font-size: 13px; font-weight: 800; text-align: right; }
+table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+th { background: var(--dark); color: #fff; text-align: left; padding: 10px; }
+td { border-bottom: 1px solid var(--line); padding: 10px; vertical-align: top; }
+tr:nth-child(even) td { background: #FAFAFA; }
+.footer { color: var(--muted); font-size: 12px; margin-top: 20px; }
+.badge { display:inline-block; background:#111827; color:#fff; padding:5px 9px; border-radius:999px; font-size:12px; margin-right:8px; }
+@media print {
+  body { background: #fff; }
+  .card { box-shadow: none; }
+}
+</style>
+</head>
+<body>
+  <div class="header">
+    <h1>NRA 2026 Lead & Prospect Management Dashboard</h1>
+    <p>Management view for SnapMenuAI event performance, lead quality, product interest, priority follow-up, and partner opportunity tracking.</p>
   </div>
-  <div class="grid">
-    <div class="panel"><h2>Priority Mix</h2>
-  <div class="barrow"><div class="barlabel">P1 <span>Immediate Follow-up</span></div><div class="bartrack"><div class="bar" style="width:29.5%"></div></div><div class="barcount">13</div></div>
-
-  <div class="barrow"><div class="barlabel">P2 <span>Qualified Nurture</span></div><div class="bartrack"><div class="bar" style="width:29.5%"></div></div><div class="barcount">13</div></div>
-
-  <div class="barrow"><div class="barlabel">P3 <span>Light Nurture</span></div><div class="bartrack"><div class="bar" style="width:22.7%"></div></div><div class="barcount">10</div></div>
-
-  <div class="barrow"><div class="barlabel">P4 <span>General Database</span></div><div class="bartrack"><div class="bar" style="width:100.0%"></div></div><div class="barcount">44</div></div>
-</div>
-    <div class="panel"><h2>Management Actions</h2>
-      <table><thead><tr><th>Priority</th><th>Action</th></tr></thead><tbody>
-        <tr><td><b>P1</b></td><td>Sales owner follow-up within 48 hours and push to demo/discovery.</td></tr><tr><td><b>P2</b></td><td>Send personalized recap, qualify need, and request discovery call.</td></tr><tr><td><b>P3</b></td><td>Add to 2 to 3 touch nurture sequence with product education.</td></tr><tr><td><b>P4</b></td><td>Add to awareness/newsletter list and qualify later when engagement appears.</td></tr>
-      </tbody></table>
+  <div class="container">
+    <div class="note">
+      <strong>Dashboard logic:</strong> Use <strong>Contact_Fact</strong> for unique-contact pipeline reporting and <strong>Lead_Fact</strong> for full scan, product-interest, and note-quality analysis.
     </div>
+
+    <div class="kpis">
+      <div class="card"><div class="kpi-label">Total Scanned</div><div class="kpi-value">88</div></div>
+      <div class="card"><div class="kpi-label">Actionable Records</div><div class="kpi-value">85</div></div>
+      <div class="card"><div class="kpi-label">Unique Contacts</div><div class="kpi-value">80</div></div>
+      <div class="card"><div class="kpi-label">P1 Contacts</div><div class="kpi-value">13</div></div>
+      <div class="card"><div class="kpi-label">Demo / Next Step</div><div class="kpi-value">11</div></div>
+      <div class="card"><div class="kpi-label">Unique Companies</div><div class="kpi-value">71</div></div>
+      <div class="card"><div class="kpi-label">Detailed Notes</div><div class="kpi-value">30</div></div>
+      <div class="card"><div class="kpi-label">Missing Notes</div><div class="kpi-value">55</div></div>
+      <div class="card"><div class="kpi-label">POS / Integration</div><div class="kpi-value">15</div></div>
+      <div class="card"><div class="kpi-label">VoiceAI Interest</div><div class="kpi-value">11</div></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h2 class="section-title">Product Interest Signals</h2>
+        
+        <div class="bar-row">
+          <div class="bar-label">POS / Integration</div>
+          <div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div>
+          <div class="bar-value">15</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">VoiceAI</div>
+          <div class="bar-track"><div class="bar-fill" style="width:73.3%"></div></div>
+          <div class="bar-value">11</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">Menu BuilderAI</div>
+          <div class="bar-track"><div class="bar-fill" style="width:33.3%"></div></div>
+          <div class="bar-value">5</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">Hotel / Room Ordering</div>
+          <div class="bar-track"><div class="bar-fill" style="width:13.3%"></div></div>
+          <div class="bar-value">2</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">PromoFlowAI</div>
+          <div class="bar-track"><div class="bar-fill" style="width:6.7%"></div></div>
+          <div class="bar-value">1</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">WhatsApp / Chat Ordering</div>
+          <div class="bar-track"><div class="bar-fill" style="width:6.7%"></div></div>
+          <div class="bar-value">1</div>
+        </div>
+      </div>
+      <div class="card">
+        <h2 class="section-title">Priority Mix - Unique Contacts</h2>
+        
+        <div class="bar-row">
+          <div class="bar-label">P1</div>
+          <div class="bar-track"><div class="bar-fill" style="width:29.5%"></div></div>
+          <div class="bar-value">13</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">P2</div>
+          <div class="bar-track"><div class="bar-fill" style="width:29.5%"></div></div>
+          <div class="bar-value">13</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">P3</div>
+          <div class="bar-track"><div class="bar-fill" style="width:22.7%"></div></div>
+          <div class="bar-value">10</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">P4</div>
+          <div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div>
+          <div class="bar-value">44</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h2 class="section-title">Lead Segment Mix - Records</h2>
+        
+        <div class="bar-row">
+          <div class="bar-label">Partner / Integration</div>
+          <div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div>
+          <div class="bar-value">49</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">Restaurant Sales</div>
+          <div class="bar-track"><div class="bar-fill" style="width:49.0%"></div></div>
+          <div class="bar-value">24</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">Channel / Dealer</div>
+          <div class="bar-track"><div class="bar-fill" style="width:10.2%"></div></div>
+          <div class="bar-value">5</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">Association / Consultant</div>
+          <div class="bar-track"><div class="bar-fill" style="width:8.2%"></div></div>
+          <div class="bar-value">4</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">Hotel / Hospitality</div>
+          <div class="bar-track"><div class="bar-fill" style="width:4.1%"></div></div>
+          <div class="bar-value">2</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">Press / Media</div>
+          <div class="bar-track"><div class="bar-fill" style="width:4.0%"></div></div>
+          <div class="bar-value">1</div>
+        </div>
+      </div>
+      <div class="card">
+        <h2 class="section-title">Leads by Event Day</h2>
+        
+        <div class="bar-row">
+          <div class="bar-label">2026-05-16</div>
+          <div class="bar-track"><div class="bar-fill" style="width:92.9%"></div></div>
+          <div class="bar-value">26</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">2026-05-17</div>
+          <div class="bar-track"><div class="bar-fill" style="width:89.3%"></div></div>
+          <div class="bar-value">25</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">2026-05-18</div>
+          <div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div>
+          <div class="bar-value">28</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">2026-05-19</div>
+          <div class="bar-track"><div class="bar-fill" style="width:21.4%"></div></div>
+          <div class="bar-value">6</div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <p class="footer">
+      <span class="badge">NRA 2026</span>
+      Prepared from event lead scan data. Product-interest counts are record-level signals. Priority pipeline counts are unique contact-level signals.
+    </p>
   </div>
-  <div class="note">Use Contact_Fact for Looker Studio scorecards and Priority_Pipeline for the complete all-priority follow-up table.</div>
-  
-    <section class="priority-section">
-      <h2>P1: Immediate Follow-up <span>13 contacts</span></h2>
-      <p>High intent, demo request, strong conversation signal, or strategic opportunity.</p>
-      <table><thead><tr><th>Score</th><th>Name</th><th>Company</th><th>Segment</th><th>Interest</th><th>Follow-Up</th></tr></thead><tbody>
-        <tr><td>100</td><td>Alejandro Luna</td><td>Abelardo&#x27;s Mexican Fresh</td><td>Restaurant Sales</td><td>VoiceAI, POS / Integration</td><td>Book demo / technical discovery within 48 hours</td></tr>
-        
-        <tr><td>100</td><td>carlo capuano</td><td>Carlucci&#x27;s Waterfront</td><td>Restaurant Sales</td><td>VoiceAI, POS / Integration</td><td>Book demo / technical discovery within 48 hours</td></tr>
-        
-        <tr><td>100</td><td>Ram Lekkala</td><td>Desibites</td><td>Restaurant Sales</td><td>Not specified</td><td>Book demo / technical discovery within 48 hours</td></tr>
-        
-        <tr><td>100</td><td>Luis Carlos Saieh</td><td>Harissa Foods</td><td>Restaurant Sales</td><td>POS / Integration, WhatsApp / Chat Ordering</td><td>Book demo / technical discovery within 48 hours</td></tr>
-        
-        <tr><td>100</td><td>Amy Landau</td><td>Hudson Grille</td><td>Restaurant Sales</td><td>VoiceAI, PromoFlowAI, POS / Integration</td><td>Sales follow-up within 48 hours with tailored use case</td></tr>
-        
-        <tr><td>100</td><td>Bobby Gailey</td><td>Tso Chinese Takeout &amp; Delivery</td><td>Restaurant Sales</td><td>VoiceAI, Menu BuilderAI</td><td>Book demo / technical discovery within 48 hours</td></tr>
-        
-        <tr><td>98</td><td>ABDALLAH MOUALLEM</td><td>Sunbake Pita Bakery</td><td>Restaurant Sales</td><td>Not specified</td><td>Sales follow-up within 48 hours with tailored use case</td></tr>
-        
-        <tr><td>96</td><td>Srinivas Balmoori</td><td>Desi Bites Inc</td><td>Restaurant Sales</td><td>Not specified</td><td>Sales follow-up within 48 hours with tailored use case</td></tr>
-        </tbody></table>
-    </section>
-    
-    <section class="priority-section">
-      <h2>P2: Qualified Nurture <span>13 contacts</span></h2>
-      <p>Good-fit contact with clear relevance but may need qualification or nurturing.</p>
-      <table><thead><tr><th>Score</th><th>Name</th><th>Company</th><th>Segment</th><th>Interest</th><th>Follow-Up</th></tr></thead><tbody>
-        <tr><td>94</td><td>Samuel Henrique</td><td>iFood</td><td>Partner / Integration</td><td>Not specified</td><td>Partner discovery call + integration-fit discussion</td></tr>
-        
-        <tr><td>86</td><td>Craig Schappacher</td><td>TacoMac</td><td>Restaurant Sales</td><td>Not specified</td><td>Sales follow-up within 48 hours with tailored use case</td></tr>
-        
-        <tr><td>84</td><td>James Messick</td><td>Taco Mac</td><td>Restaurant Sales</td><td>Not specified</td><td>Sales follow-up within 48 hours with tailored use case</td></tr>
-        
-        <tr><td>83</td><td>Victoria Russi</td><td>Pepe&#x27;s Finest Mexican Food</td><td>Restaurant Sales</td><td>Not specified</td><td>Sales follow-up within 48 hours with tailored use case</td></tr>
-        
-        <tr><td>82</td><td>David Barreiro Canda</td><td>Hyatt All Inclusive Collection</td><td>Restaurant Sales</td><td>Not specified</td><td>Sales follow-up within 48 hours with tailored use case</td></tr>
-        
-        <tr><td>76</td><td>Jeff Landau</td><td>Hudson Grille</td><td>Restaurant Sales</td><td>Not specified</td><td>Sales follow-up within 48 hours with tailored use case</td></tr>
-        
-        <tr><td>73</td><td>Peter Turano</td><td>Chicago Pastry</td><td>Restaurant Sales</td><td>Not specified</td><td>Send personalized recap and request discovery call</td></tr>
-        
-        <tr><td>73</td><td>John Rogers</td><td>Montage International</td><td>Hotel / Hospitality</td><td>Hotel / Room Ordering</td><td>Send personalized recap and request discovery call</td></tr>
-        </tbody></table>
-    </section>
-    
-    <section class="priority-section">
-      <h2>P3: Light Nurture <span>10 contacts</span></h2>
-      <p>Actionable contact with lighter buying signal or limited product-specific detail.</p>
-      <table><thead><tr><th>Score</th><th>Name</th><th>Company</th><th>Segment</th><th>Interest</th><th>Follow-Up</th></tr></thead><tbody>
-        <tr><td>58</td><td>Abel Gonzalez</td><td>Abelardo&#x27;s Mexican Fresh</td><td>Restaurant Sales</td><td>Not specified</td><td>Send personalized recap and request discovery call</td></tr>
-        
-        <tr><td>55</td><td>Amanda Turano</td><td>Chicago Pastry</td><td>Restaurant Sales</td><td>Not specified</td><td>Send personalized recap and request discovery call</td></tr>
-        
-        <tr><td>55</td><td>Muthukrishnan Srinivasan</td><td>Toast</td><td>Partner / Integration</td><td>POS / Integration</td><td>Send partner deck and schedule discovery</td></tr>
-        
-        <tr><td>54</td><td>Sacha Favelevic</td><td>Xenios LLC</td><td>Channel / Dealer</td><td>VoiceAI, Menu BuilderAI, POS / Integration</td><td>Send partner deck and schedule discovery</td></tr>
-        
-        <tr><td>51</td><td>Dan Diaz</td><td>F3 Technologies Inc.</td><td>Partner / Integration</td><td>Not specified</td><td>Send partner deck and schedule discovery</td></tr>
-        
-        <tr><td>51</td><td>Barry Goldberg</td><td>Mako Networks</td><td>Partner / Integration</td><td>VoiceAI</td><td>Send partner deck and schedule discovery</td></tr>
-        
-        <tr><td>51</td><td>Muthana Hussein</td><td>TOWER MARKET &amp; DELI (EFT) (PD</td><td>Restaurant Sales</td><td>Not specified</td><td>Send personalized recap and request discovery call</td></tr>
-        
-        <tr><td>45</td><td>Daniel Wachsberg</td><td>Professor Pizza Slice and Pie</td><td>Restaurant Sales</td><td>Not specified</td><td>Add to nurture sequence with product-specific proof</td></tr>
-        </tbody></table>
-    </section>
-    
-    <section class="priority-section">
-      <h2>P4: General Database <span>44 contacts</span></h2>
-      <p>General event contact with minimal notes or low immediate conversion signal.</p>
-      <table><thead><tr><th>Score</th><th>Name</th><th>Company</th><th>Segment</th><th>Interest</th><th>Follow-Up</th></tr></thead><tbody>
-        <tr><td>81</td><td>Snehal Patel</td><td>RHCP Restaurants</td><td>Restaurant Sales</td><td>VoiceAI</td><td>Sales follow-up within 48 hours with tailored use case</td></tr>
-        
-        <tr><td>33</td><td>Ryan Perera</td><td>Captain AI</td><td>Partner / Integration</td><td>Not specified</td><td>Add to nurture sequence with product-specific proof</td></tr>
-        
-        <tr><td>33</td><td>Sam Liebl</td><td>Commio</td><td>Partner / Integration</td><td>Not specified</td><td>Add to nurture sequence with product-specific proof</td></tr>
-        
-        <tr><td>33</td><td>Shane Broussard</td><td>Food Hub US LLC</td><td>Partner / Integration</td><td>Not specified</td><td>Add to nurture sequence with product-specific proof</td></tr>
-        
-        <tr><td>33</td><td>Mike Kim</td><td>Hangry Joe&#x27;s</td><td>Channel / Dealer</td><td>Not specified</td><td>Add to nurture sequence with product-specific proof</td></tr>
-        
-        <tr><td>33</td><td>Vikram Bhonagiri</td><td>Parts Town</td><td>Channel / Dealer</td><td>Not specified</td><td>Add to nurture sequence with product-specific proof</td></tr>
-        
-        <tr><td>33</td><td>John Moody</td><td>Restaurant365</td><td>Partner / Integration</td><td>Not specified</td><td>Add to nurture sequence with product-specific proof</td></tr>
-        
-        <tr><td>33</td><td>Michael McAuliffe</td><td>Restaurant365</td><td>Partner / Integration</td><td>Not specified</td><td>Add to nurture sequence with product-specific proof</td></tr>
-        </tbody></table>
-    </section>
-    
-</div></body></html>
+</body>
+</html>
